@@ -1,4 +1,4 @@
-package au.com.belmonttechnology.data
+package com.example.scalawebapp.data
 
 import reflect.BeanProperty
 import javax.persistence.Entity

@@ -10,7 +10,7 @@
 
     <tx:annotation-driven/>
 
-    <context:component-scan base-package="au.com.belmonttechnology.repository"/>
+    <context:component-scan base-package="com.example.scalawebapp.repository"/>
 
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"/>
@@ -27,7 +27,7 @@
         <property name="dataSource" ref="dataSource"/>
         <property name="annotatedClasses">
             <list>
-                <value>au.com.belmonttechnology.data.Customer</value>
+                <value>com.example.scalawebapp.data.Customer</value>
             </list>
         </property>
         <property name="hibernateProperties">

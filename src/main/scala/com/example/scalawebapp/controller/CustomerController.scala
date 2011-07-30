@@ -1,13 +1,13 @@
-package au.com.belmonttechnology.controller
+package com.example.scalawebapp.controller
 
 import org.springframework.stereotype.Controller
-import au.com.belmonttechnology.data.Customer
+import com.example.scalawebapp.data.Customer
 import org.springframework.beans.factory.annotation.Autowired
 import org.hibernate.SessionFactory
 import org.springframework.web.bind.annotation.{PathVariable, ModelAttribute, RequestMapping}
 import org.springframework.web.bind.annotation.RequestMethod._
 import org.springframework.web.servlet.ModelAndView
-import au.com.belmonttechnology.repository.CustomerRepository
+import com.example.scalawebapp.repository.CustomerRepository
 
 @Controller
 class CustomerController {

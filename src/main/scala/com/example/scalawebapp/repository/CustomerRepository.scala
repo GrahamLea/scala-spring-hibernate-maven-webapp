@@ -1,6 +1,6 @@
-package au.com.belmonttechnology.repository
+package com.example.scalawebapp.repository
 
-import au.com.belmonttechnology.data.Customer
+import com.example.scalawebapp.data.Customer
 import org.springframework.stereotype.Repository
 import org.springframework.transaction.annotation.Transactional
 import org.springframework.beans.factory.annotation.Autowired

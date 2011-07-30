@@ -1,4 +1,4 @@
-package au.com.belmonttechnology.controller
+package com.example.scalawebapp.controller
 
 import org.springframework.stereotype.Controller
 import org.springframework.beans.factory.annotation.Autowired
@@ -6,7 +6,7 @@ import org.hibernate.SessionFactory
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestMethod._
 import org.springframework.web.servlet.ModelAndView
-import au.com.belmonttechnology.repository.CustomerRepository
+import com.example.scalawebapp.repository.CustomerRepository
 
 @Controller
 class HomePageController {
