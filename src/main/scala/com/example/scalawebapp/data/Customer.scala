@@ -7,4 +7,6 @@ import javax.persistence.Entity
 class Customer extends AbstractEntity {
   @BeanProperty
   var name: String = null;
+  
+  override def toString = "[Customer: id = " + id + ", name = " + name + "]"
 }
