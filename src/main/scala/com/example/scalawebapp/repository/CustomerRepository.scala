@@ -4,33 +4,39 @@ import com.example.scalawebapp.data.Customer
 import org.springframework.stereotype.Repository
 import org.springframework.transaction.annotation.Transactional
 import org.springframework.beans.factory.annotation.Autowired
-import org.hibernate.{Session, SessionFactory}
-import java.{util => ju}
+import org.hibernate.{ Session, SessionFactory }
 
 trait CustomerRepository {
-  def getAll: ju.List[Customer]
+  def getAll: java.util.List[Customer]
   def save(customer: Customer): Long
+  def update(customer: Customer)
   def get(customerId: Long): Customer
+  def delete(customerId: Long)
 }
 
 @Repository
 class CustomerRepositoryImpl extends CustomerRepository {
-
-  implicit def sessionFactory2Session(sf: SessionFactory): Session = sf.getCurrentSession;
-
   @Autowired
   var sessionFactory: SessionFactory = null
 
   @Transactional
-  def save(customer: Customer): Long = Long.unbox(sessionFactory.save(customer))
+  def save(customer: Customer): Long = Long.unbox(getCurrentSession.save(customer))
+
+  @Transactional
+  def update(customer: Customer) = getCurrentSession.merge(customer)
+
+  @Transactional
+  def delete(customerId: Long) = getCurrentSession.delete(get(customerId))
 
   @Transactional(readOnly = true)
-  def get(customerId: Long): Customer = sessionFactory.get(classOf[Customer], Long.box(customerId)).asInstanceOf[Customer]
+  def get(customerId: Long): Customer = getCurrentSession.get(classOf[Customer], Long.box(customerId)).asInstanceOf[Customer]
 
   @Transactional(readOnly = true)
-  def getAll: ju.List[Customer] = sessionFactory.createCriteria(classOf[Customer]).list().asInstanceOf[ju.List[Customer]]
+  def getAll: java.util.List[Customer] = getCurrentSession.createCriteria(classOf[Customer]).list().asInstanceOf[java.util.List[Customer]]
 
   def setSessionFactory(sessionFactory: SessionFactory): Unit = {
     this.sessionFactory = sessionFactory
   }
+
+  def getCurrentSession = sessionFactory.getCurrentSession
 }
