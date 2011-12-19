@@ -2,10 +2,20 @@
 <%@include file="taglibs.jspf"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<tags:head title="Customer \#${customer.id}: ${customer.name}"/>
+<tags:head title="Customer \#${customer.id}: ${customer.name}" />
 <body>
-    <h1><c:out value="${customer.name}"/></h1>
-    <p>Might I suggest enhancing the system to support more than just a customer's name?</p>
-    <p><a href="<c:url value="/"/>">Home</a></p>
+  <h1>
+    <c:out value="${customer.name}" />
+  </h1>
+  <p>Might I suggest enhancing the system to support more than just a customer's name?</p>
+  <p>
+    <a href="<c:url value="/customers/edit/${customer.id}.html"/>">Edit the customer</a>
+  </p>
+  <p>
+    <a href="<c:url value="/customers/delete/${customer.id}.html"/>">Delete the customer</a>
+  </p>
+  <p>
+    <a href="<c:url value="/"/>">Home</a>
+  </p>
 </body>
 </html>
