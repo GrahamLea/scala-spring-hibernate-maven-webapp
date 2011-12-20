@@ -36,25 +36,13 @@ class CustomerController {
   }
 
   @RequestMapping(value = Array("/customers/{customerId}"), method = Array(GET))
-  def viewCustomer(@PathVariable customerId: Long) =
-    new ModelAndView("customer", "customer", customerRepository.get(customerId))
-
-  @RequestMapping(value = Array("/customers/delete/{customerId}"), method = Array(GET))
-  def deleteCustomer(@PathVariable customerId: Long) = {
-    customerRepository.delete(customerId)
-
-    "redirect:/"
+  def viewCustomer(@PathVariable customerId: Long, @RequestParam(required = false) edit: String) = {
+    val viewName = if (edit == null) "customer" else "editCustomer"
+    new ModelAndView(viewName, "customer", customerRepository.get(customerId))
   }
 
-  @RequestMapping(value = Array("/customers/edit/{customerId}"), method = Array(GET))
-  def editCustomer(@PathVariable customerId: Long, model: Model) = {
-    model.addAttribute("editCustomer", customerRepository.get(customerId))
-
-    "editCustomer"
-  }
-
-  @RequestMapping(value = Array("/customers/edit/{customerId}"), method = Array(POST))
-  def editCustomer(@ModelAttribute("editCustomer") customer: Customer, result: BindingResult, @PathVariable customerId: Long): String = {
+  @RequestMapping(value = Array("/customers/{customerId}"), method = Array(POST))
+  def editCustomer(@PathVariable customerId: Long, @ModelAttribute("editCustomer") customer: Customer, result: BindingResult): String = {
     customerValidator.validate(customer, result)
 
     if (result.hasErrors) {
@@ -63,6 +51,13 @@ class CustomerController {
 
     customer.id = customerId
     customerRepository.update(customer)
+
+    "redirect:/customers/" + customerId + ".html"
+  }
+
+  @RequestMapping(value = Array("/customers/delete/{customerId}"), method = Array(GET))
+  def deleteCustomer(@PathVariable customerId: Long) = {
+    customerRepository.delete(customerId)
 
     "redirect:/"
   }

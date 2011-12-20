@@ -5,14 +5,14 @@
 <tags:head title="Customer \#${customer.id}: ${customer.name}" />
 <body>
   <h1>
-    <c:out value="${customer.name}" />
+    Customer #<c:out value="${customer.id}" />: <c:out value="${customer.name}" />
   </h1>
   <p>Might I suggest enhancing the system to support more than just a customer's name?</p>
   <p>
-    <a href="<c:url value="/customers/edit/${customer.id}.html"/>">Edit the customer</a>
+    <a href="<c:url value="/customers/${customer.id}.html?edit"/>">Edit the customer</a>
   </p>
   <p>
-    <a href="<c:url value="/customers/delete/${customer.id}.html"/>">Delete the customer</a>
+    <a href="<c:url value="/customers/${customer.id}.html"/>">Delete the customer</a>
   </p>
   <p>
     <a href="<c:url value="/"/>">Home</a>
