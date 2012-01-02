@@ -2,10 +2,8 @@ package com.example.scalawebapp.controller
 
 import org.springframework.stereotype.Controller
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.{ PathVariable, ModelAttribute, RequestMapping, RequestParam }
 import org.springframework.web.bind.annotation.RequestMethod._
-import org.springframework.web.bind.support.SessionStatus
 import org.springframework.web.servlet.ModelAndView
 import org.springframework.validation.BindingResult
 
@@ -55,10 +53,9 @@ class CustomerController {
     "redirect:/customers/" + customerId + ".html"
   }
 
-  @RequestMapping(value = Array("/customers/delete/{customerId}"), method = Array(GET))
+  @RequestMapping(value = Array("/customers/{customerId}"), method = Array(DELETE))
   def deleteCustomer(@PathVariable customerId: Long) = {
     customerRepository.delete(customerId)
-
     "redirect:/"
   }
 }

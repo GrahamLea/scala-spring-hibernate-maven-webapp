@@ -29,6 +29,17 @@
         <url-pattern>*.html</url-pattern>
     </servlet-mapping>
 
+    <filter>
+        <!-- Allows the "_method" parameter to dictate the HTTP method -->
+        <filter-name>methodFilter</filter-name>
+        <filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>methodFilter</filter-name>
+        <url-pattern>*.html</url-pattern>
+    </filter-mapping>
+
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>

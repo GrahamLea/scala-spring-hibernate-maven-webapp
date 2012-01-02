@@ -12,7 +12,10 @@
     <a href="<c:url value="/customers/${customer.id}.html?edit"/>">Edit the customer</a>
   </p>
   <p>
-    <a href="<c:url value="/customers/${customer.id}.html"/>">Delete the customer</a>
+    <form id="deleteCustomerForm" style="height:0;" action="<c:url value="/customers/${customer.id}.html"/>" method="POST">
+      <input type="hidden" name="_method" value="delete"/>
+    </form>
+    <a href="#" onclick="document.getElementById('deleteCustomerForm').submit(); return false;">Delete the customer</a>
   </p>
   <p>
     <a href="<c:url value="/"/>">Home</a>
