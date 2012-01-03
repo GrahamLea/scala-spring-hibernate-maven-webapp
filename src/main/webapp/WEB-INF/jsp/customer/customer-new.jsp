@@ -5,7 +5,7 @@
 <tags:head title="New Customer" />
 <body>
   <h1>New Customer</h1>
-  <form:form commandName="newCustomer">
+  <form:form commandName="customerData">
     <form:label path="name">Name</form:label>
     <form:input path="name" />
     <p>

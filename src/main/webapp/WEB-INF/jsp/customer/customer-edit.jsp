@@ -2,10 +2,10 @@
 <%@include file="../taglibs.jspf"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<tags:head title="Edit Customer \#${customer.id}: ${customer.name}" />
+<tags:head title="Edit Customer \#${customerId}: ${customerData.name}" />
 <body>
-  <h1>Edit Customer #<c:out value="${customer.id}"/>: <c:out value="${customer.name}"/></h1>
-  <form:form commandName="customer">
+  <h1>Edit Customer #<c:out value="${customerId}"/>: <c:out value="${customerData.name}"/></h1>
+  <form:form commandName="customerData">
     <form:label path="name">Name</form:label>
     <form:input path="name" />
     <p>

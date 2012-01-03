@@ -4,7 +4,7 @@ import com.example.scalawebapp.data.Customer
 import org.springframework.stereotype.Repository
 import org.springframework.transaction.annotation.Transactional
 import org.springframework.beans.factory.annotation.Autowired
-import org.hibernate.{ Session, SessionFactory }
+import org.hibernate.SessionFactory
 
 trait CustomerRepository {
   def getAll: java.util.List[Customer]
@@ -23,7 +23,7 @@ class CustomerRepositoryImpl extends CustomerRepository {
   def save(customer: Customer): Long = Long.unbox(getCurrentSession.save(customer))
 
   @Transactional
-  def update(customer: Customer) = getCurrentSession.merge(customer)
+  def update(customer: Customer) = getCurrentSession.saveOrUpdate(customer)
 
   @Transactional
   def delete(customerId: Long) = getCurrentSession.delete(get(customerId))
