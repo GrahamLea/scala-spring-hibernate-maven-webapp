@@ -9,27 +9,17 @@ import org.springframework.validation.BindingResult
 
 import com.example.scalawebapp.data.Customer
 import com.example.scalawebapp.repository.CustomerRepository
-import com.example.scalawebapp.validator.CustomerValidator
 
 @Controller
 class CustomerController {
   @Autowired
   val customerRepository: CustomerRepository = null
 
-  @Autowired
-  val customerValidator: CustomerValidator = null
-
   @RequestMapping(value = Array("/customers/new"), method = Array(GET))
   def showNewCustomerForm() = new ModelAndView("customer/customer-new", "newCustomer", new Customer)
 
   @RequestMapping(value = Array("/customers/new"), method = Array(POST))
-  def createNewCustomer(@ModelAttribute("newCustomer") customer: Customer, result: BindingResult): String = {
-    customerValidator.validate(customer, result)
-
-    if (result.hasErrors) {
-      return "customer/customer-new"
-    }
-
+  def createNewCustomer(@ModelAttribute("newCustomer") customer: Customer): String = {
     "redirect:/customers/" + customerRepository.save(customer) + ".html"
   }
 
@@ -40,13 +30,7 @@ class CustomerController {
   }
 
   @RequestMapping(value = Array("/customers/{customerId}"), method = Array(POST))
-  def editCustomer(@PathVariable customerId: Long, @ModelAttribute("editCustomer") customer: Customer, result: BindingResult): String = {
-    customerValidator.validate(customer, result)
-
-    if (result.hasErrors) {
-      return "customer-edit"
-    }
-
+  def editCustomer(@PathVariable customerId: Long, @ModelAttribute("editCustomer") customer: Customer): String = {
     customer.id = customerId
     customerRepository.update(customer)
 
