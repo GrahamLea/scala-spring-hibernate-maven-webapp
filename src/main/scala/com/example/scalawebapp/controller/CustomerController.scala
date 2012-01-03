@@ -20,14 +20,14 @@ class CustomerController {
   val customerValidator: CustomerValidator = null
 
   @RequestMapping(value = Array("/customers/new"), method = Array(GET))
-  def showNewCustomerForm() = new ModelAndView("newCustomer", "newCustomer", new Customer)
+  def showNewCustomerForm() = new ModelAndView("customer/customer-new", "newCustomer", new Customer)
 
   @RequestMapping(value = Array("/customers/new"), method = Array(POST))
   def createNewCustomer(@ModelAttribute("newCustomer") customer: Customer, result: BindingResult): String = {
     customerValidator.validate(customer, result)
 
     if (result.hasErrors) {
-      return "newCustomer"
+      return "customer/customer-new"
     }
 
     "redirect:/customers/" + customerRepository.save(customer) + ".html"
@@ -35,7 +35,7 @@ class CustomerController {
 
   @RequestMapping(value = Array("/customers/{customerId}"), method = Array(GET))
   def viewCustomer(@PathVariable customerId: Long, @RequestParam(required = false) edit: String) = {
-    val viewName = if (edit == null) "customer" else "editCustomer"
+    val viewName = "customer/" + (if (edit == null) "customer-view" else "customer-edit")
     new ModelAndView(viewName, "customer", customerRepository.get(customerId))
   }
 
@@ -44,7 +44,7 @@ class CustomerController {
     customerValidator.validate(customer, result)
 
     if (result.hasErrors) {
-      return "editCustomer"
+      return "customer-edit"
     }
 
     customer.id = customerId
