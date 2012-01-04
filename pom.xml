@@ -214,6 +214,13 @@
             <scope>runtime</scope>
         </dependency>
 
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>2.14.0</version>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -265,7 +272,24 @@
                         <include>**/*Test.class</include>
                         <include>**/*Spec.class</include>
                     </includes>
+                    <excludes>
+                        <exclude>**/webtest/**/*Test.class</exclude>
+                    </excludes>
                 </configuration>
+                <executions>
+                    <execution>
+                        <id>web-tests</id>
+                        <phase>integration-test</phase>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                        <configuration>
+                            <includes>
+                                <include>**/webtest/**/*Test.class</include>
+                            </includes>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>org.mortbay.jetty</groupId>
@@ -282,6 +306,26 @@
                     <stopPort>9191</stopPort>
                     <reload>manual</reload>
                 </configuration>
+                <executions>
+                    <execution>
+                        <id>start-jetty-before-integration-tests</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>run-war</goal>
+                        </goals>
+                        <configuration>
+                            <scanIntervalSeconds>0</scanIntervalSeconds>
+                            <daemon>true</daemon>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>stop-jetty-after-integration-tests</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>stop</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
