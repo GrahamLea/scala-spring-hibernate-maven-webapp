@@ -8,9 +8,8 @@
   <form:form commandName="customerData">
     <form:label path="name">Name</form:label>
     <form:input path="name" />
-    <p>
-      <form:errors path="name" cssStyle="color:red"></form:errors>
-    </p>
+    <form:errors path="name" cssStyle="color:red"/>
+    <br/>
     <input type="submit" value="Create Customer" />
   </form:form>
   <p>

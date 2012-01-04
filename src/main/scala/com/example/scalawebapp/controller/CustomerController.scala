@@ -9,6 +9,10 @@ import org.springframework.web.servlet.ModelAndView
 import com.example.scalawebapp.data.Customer
 import com.example.scalawebapp.repository.CustomerRepository
 import reflect.BeanProperty
+import javax.validation.constraints.NotNull
+import org.hibernate.validator.constraints.NotEmpty
+import javax.validation.Valid
+import org.springframework.validation.BindingResult
 
 @Controller
 class CustomerController {
@@ -22,27 +26,44 @@ class CustomerController {
   def showNewCustomerForm() = new ModelAndView("customer/customer-new", "customerData", new CustomerPageData)
 
   @RequestMapping(value = Array("/customers/new"), method = Array(POST))
-  def createNewCustomer(@ModelAttribute("customerData") customerData: CustomerPageData): String = {
-    val newCustomer = new Customer
-    customerData.copyTo(newCustomer)
-    "redirect:/customers/" + customerRepository.save(newCustomer) + ".html"
+  def createNewCustomer(
+        @Valid @ModelAttribute("customerData") customerData: CustomerPageData,
+        bindingResult: BindingResult): String = {
+    if (bindingResult.hasErrors) {
+      "customer/customer-new"
+    } else {
+      val newCustomer = new Customer
+      customerData.copyTo(newCustomer)
+      "redirect:/customers/" + customerRepository.save(newCustomer) + ".html"
+    }
   }
 
   @RequestMapping(value = Array("/customers/{customerId}"), method = Array(GET))
-  def viewCustomer(@PathVariable customerId: Long, @RequestParam(required = false) edit: String) = {
-    val viewName = "customer/" + (if (edit == null) "customer-view" else "customer-edit")
-    new ModelAndView(viewName,
-      Map("customerData" -> CustomerPageData(customerRepository.get(customerId)),
-          "customerId" -> customerId
-      ))
+  def viewCustomer(
+        @PathVariable customerId: Long,
+        @RequestParam(required = false) edit: String) = {
+    val customer: Customer = customerRepository.get(customerId)
+    if (edit == null) {
+      new ModelAndView("customer/customer-view", "customer", customer)
+    }
+    else {
+      new ModelAndView("customer/customer-edit", Map("customer" -> customer, "customerData" -> CustomerPageData(customer)))
+    }
   }
 
   @RequestMapping(value = Array("/customers/{customerId}"), method = Array(POST))
-  def editCustomer(@PathVariable customerId: Long, @ModelAttribute("customerData") customerData: CustomerPageData): String = {
+  def editCustomer(
+        @PathVariable customerId: Long,
+        @Valid @ModelAttribute("customerData") customerData: CustomerPageData,
+        bindingResult: BindingResult): ModelAndView = {
     val customer = customerRepository.get(customerId)
-    customerData.copyTo(customer)
-    customerRepository.update(customer)
-    "redirect:/customers/" + customerId + ".html"
+    if (bindingResult.hasErrors) {
+      new ModelAndView("customer/customer-edit", "customer", customer)
+    } else {
+      customerData.copyTo(customer)
+      customerRepository.update(customer)
+      new ModelAndView("redirect:/customers/" + customerId + ".html")
+    }
   }
 
   @RequestMapping(value = Array("/customers/{customerId}"), method = Array(DELETE))
@@ -53,7 +74,7 @@ class CustomerController {
 }
 
 class CustomerPageData {
-  @BeanProperty
+  @BeanProperty @NotNull @NotEmpty
   var name: String = null;
 
   override def toString = "[CustomerPageData: name = " + name + "]"
