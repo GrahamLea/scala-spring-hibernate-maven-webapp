@@ -13,16 +13,16 @@
   <p>
     <a href="<c:url value="/static.htm"/>">Static File</a>
   </p>
-  <p>
-    <a href="<c:url value="/customers/new.html"/>">Add a Customer</a>
-  </p>
-  <h2>Existing Customers</h2>
+  <h2>Customers</h2>
   <ul>
     <c:forEach items="${customers}" var="customer">
-      <li><a href="<c:url value="/customers/${customer.id}.html"/>"><c:out value="${customer.name}" />
+      <li><a href="<c:url value="/customers/${customer.id}.html"/>">#<c:out value="${customer.id}" />: <c:out value="${customer.name}" />
       </a>
       </li>
     </c:forEach>
   </ul>
+  <p>
+    <a href="<c:url value="/customers/new.html"/>">Add a Customer</a>
+  </p>
 </body>
 </html>
