@@ -34,7 +34,7 @@
     </contributors>
 
     <properties>
-        <scala.version>2.9.0-1</scala.version>
+        <scala.version>2.9.1</scala.version>
         <org.springframework.version>3.0.5.RELEASE</org.springframework.version>
     </properties>
 
