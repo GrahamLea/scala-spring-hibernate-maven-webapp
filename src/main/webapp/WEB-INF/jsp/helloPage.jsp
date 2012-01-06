@@ -3,10 +3,10 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <tags:head title="Server Name" />
-<body>
-  <h1>Hello from ${pageContext.request.serverName}</h1>
+<body id="server-name">
+  <h1>Hello from <span id="serverName">${pageContext.request.serverName}</span></h1>
   <p>
-    <a href="<c:url value="/"/>">Home</a>
+    <a href="<c:url value="/"/>" class="home-link">Home</a>
   </p>
 </body>
 </html>

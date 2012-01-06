@@ -3,7 +3,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <tags:head title="Edit Customer \#${customer.id}: ${customer.name}" />
-<body>
+<body id="customer-edit">
   <h1>Edit Customer #<c:out value="${customer.id}"/>: <c:out value="${customer.name}"/></h1>
   <form:form commandName="customerData">
     <form:label path="name">Name</form:label>

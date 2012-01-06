@@ -3,7 +3,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <tags:head title="New Customer" />
-<body>
+<body id="customer-new">
   <h1>New Customer</h1>
   <form:form commandName="customerData">
     <form:label path="name">Name</form:label>
