@@ -1,12 +1,13 @@
-Scala+Spring+Hibernate+Maven
-============================
+Scala + Spring + Hibernate + Maven + Selenium WebDriver
+=======================================================
 
-This project contains source code for kickstarting a webapp project using the latest versions of Scala, Spring, Hibernate and Maven.
+This project contains source code for kickstarting a webapp project using the latest versions of
+Scala, Spring, Hibernate and Maven, including Selenium WebDriver PageObject-based web tests.
 
 Versions currently used in the project are:
 
-* [Scala](http://www.scala-lang.org/): 2.9.0-1
-* [Spring](http://www.springsource.org/about): 3.0.5.RELEASE
+* [Scala](http://www.scala-lang.org/): 2.9.1
+* [Spring](http://www.springsource.org/about): 3.1.0.RELEASE
 * [Hibernate](http://www.hibernate.org/): 3.6.5.Final
 
 The code also makes use of [HSQLDB](http://hsqldb.org/), but you'll probably want to replace that with the JDBC driver
