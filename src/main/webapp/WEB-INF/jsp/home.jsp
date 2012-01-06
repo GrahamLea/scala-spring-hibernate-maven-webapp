@@ -6,7 +6,7 @@
   <meta name="description" content="A webapp built with Scala, Spring, Hibernate and Maven that can get your own web project kickstarted.">
   <meta name="keywords" content="scala, spring, hibernate, maven">
 </tags:head>
-<body>
+<body id="home">
   <p>
     <a href="<c:url value="/hello.html"/>">Server Name</a>
   </p>
@@ -14,7 +14,7 @@
     <a href="<c:url value="/static.htm"/>">Static File</a>
   </p>
   <h2>Customers</h2>
-  <ul>
+  <ul id="customer-list">
     <c:forEach items="${customers}" var="customer">
       <li><a href="<c:url value="/customers/${customer.id}.html"/>">#<c:out value="${customer.id}" />: <c:out value="${customer.name}" />
       </a>
@@ -23,6 +23,12 @@
   </ul>
   <p>
     <a href="<c:url value="/customers/new.html"/>">Add a Customer</a>
+  </p>
+  <p>
+    <form id="deleteAllCustomersForm" style="height:0;" action="<c:url value="/customers.html"/>" method="POST">
+      <input type="hidden" name="_method" value="delete"/>
+    </form>
+    <a href="#" onclick="document.getElementById('deleteAllCustomersForm').submit(); return false;">Delete All Customers</a>
   </p>
 </body>
 </html>

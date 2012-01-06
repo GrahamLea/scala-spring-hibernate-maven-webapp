@@ -13,6 +13,7 @@ import javax.validation.constraints.NotNull
 import org.hibernate.validator.constraints.NotEmpty
 import javax.validation.Valid
 import org.springframework.validation.BindingResult
+import collection.JavaConversions
 
 @Controller
 class CustomerController {
@@ -69,6 +70,14 @@ class CustomerController {
   @RequestMapping(value = Array("/customers/{customerId}"), method = Array(DELETE))
   def deleteCustomer(@PathVariable customerId: Long) = {
     customerRepository.delete(customerId)
+    "redirect:/"
+  }
+
+  @RequestMapping(value = Array("/customers"), method = Array(DELETE))
+  def deleteAllCustomers() = {
+    for (c: Customer <- JavaConversions.asScalaBuffer(customerRepository.getAll)) {
+      customerRepository.delete(c.id)
+    }
     "redirect:/"
   }
 }
