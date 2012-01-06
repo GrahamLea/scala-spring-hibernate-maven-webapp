@@ -8,7 +8,7 @@ Versions currently used in the project are:
 
 * [Scala](http://www.scala-lang.org/): 2.9.1
 * [Spring](http://www.springsource.org/about): 3.1.0.RELEASE
-* [Hibernate](http://www.hibernate.org/): 3.6.5.Final
+* [Hibernate](http://www.hibernate.org/): 4.0.0.Final
 
 The code also makes use of [HSQLDB](http://hsqldb.org/), but you'll probably want to replace that with the JDBC driver
 for whatever database you're using.
