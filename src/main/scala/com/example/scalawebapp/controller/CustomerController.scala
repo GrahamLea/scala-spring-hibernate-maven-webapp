@@ -75,7 +75,7 @@ class CustomerController {
     } else {
       customerData.copyTo(customer)
       customerRepository.update(customer)
-      new ModelAndView("redirect:/customers/" + customerId + ".html")
+      new ModelAndView("redirect:/customers/{customerId}.html")
     }
   }
 
