@@ -25,11 +25,16 @@ The webapp can be run inside Jetty using the Maven plugin:
 
     mvn jetty:run
 
+An Eclipse project will be generated with all the correct natures in it by running:
+
+	mvn eclipse:eclipse
+
 
 Attribution
 -----------
 
 This source code was originally created by Graham Lea for the blog http://grahamhackingscala.blogspot.com/
+Eclipse support by Trevor Lalish-Menagh at http://www.trevmex.com/
 
 
 Conditions of Usage
