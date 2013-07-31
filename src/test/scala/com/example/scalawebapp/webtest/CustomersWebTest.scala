@@ -14,7 +14,6 @@ package com.example.scalawebapp.webtest
 
 import com.example.scalawebapp.webtest.page._
 import org.junit.Assert._
-import org.junit.matchers.JUnitMatchers._
 import org.hamcrest.CoreMatchers._
 import org.junit.{After, Test}
 

@@ -15,7 +15,7 @@ package com.example.scalawebapp.webtest
 import com.example.scalawebapp.webtest.page._
 import org.junit.Test
 import org.junit.Assert._
-import org.junit.matchers.JUnitMatchers._
+import org.hamcrest.CoreMatchers._
 
 class StaticFileWebTest extends WebDriverAccess {
   @Test
