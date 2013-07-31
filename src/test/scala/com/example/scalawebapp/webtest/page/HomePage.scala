@@ -17,7 +17,7 @@ import org.openqa.selenium.{By, WebDriver}
 import java.lang.String
 
 object HomePage {
-  private val DEFAULT_PORT = 9090;
+  private val DEFAULT_PORT = 9090
 
   def open(server: String = "localhost", port: Int = DEFAULT_PORT)(implicit driver: WebDriver) = {
     driver.navigate.to("http://" + server + ":" + port + "/")

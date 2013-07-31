@@ -22,7 +22,7 @@ class StaticFileWebTest extends WebDriverAccess {
   def shouldReturnTheContentsOfTheFile {
     val homePage = HomePage.open()
     val staticFilePage = homePage.showStaticFile()
-    assertThat(staticFilePage.text, containsString("This is a static HTML file."));
+    assertThat(staticFilePage.text, containsString("This is a static HTML file."))
     staticFilePage.home()
   }
 }

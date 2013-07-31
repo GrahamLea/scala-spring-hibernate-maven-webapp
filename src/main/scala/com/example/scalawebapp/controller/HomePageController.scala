@@ -22,7 +22,7 @@ import com.example.scalawebapp.repository.CustomerRepository
 
 @Controller
 class HomePageController {
-  implicit def sessionFactory2Session(sf: SessionFactory) = sf.getCurrentSession;
+  implicit def sessionFactory2Session(sf: SessionFactory) = sf.getCurrentSession
 
   @Autowired
   val customerRepository: CustomerRepository = null

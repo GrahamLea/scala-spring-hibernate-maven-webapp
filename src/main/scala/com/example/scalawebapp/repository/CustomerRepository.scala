@@ -35,10 +35,10 @@ class CustomerRepositoryImpl extends CustomerRepository {
   def save(customer: Customer): Long = Long.unbox(getCurrentSession.save(customer).asInstanceOf[Object])
 
   @Transactional
-  def update(customer: Customer) = getCurrentSession.saveOrUpdate(customer)
+  def update(customer: Customer): Unit = getCurrentSession.saveOrUpdate(customer)
 
   @Transactional
-  def delete(customerId: Long) = getCurrentSession.delete(get(customerId))
+  def delete(customerId: Long): Unit = getCurrentSession.delete(get(customerId))
 
   @Transactional(readOnly = true)
   def get(customerId: Long): Customer = getCurrentSession.get(classOf[Customer], Long.box(customerId)).asInstanceOf[Customer]

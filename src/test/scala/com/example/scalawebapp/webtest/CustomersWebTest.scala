@@ -41,7 +41,7 @@ class CustomersWebTest extends WebDriverAccess {
   def shouldBeAccessibleFromTheHomePageAfterBeingAdded {
     var viewCustomerPage = createCustomerNamed("Bruce")
     val homePage = viewCustomerPage.home()
-    assertThat(homePage.customerNames.contains("Bruce"), is(true));
+    assertThat(homePage.customerNames.contains("Bruce"), is(true))
     viewCustomerPage = homePage.viewCustomer("Bruce")
     assertThat(viewCustomerPage.text, containsString("Bruce"))
   }
@@ -73,7 +73,7 @@ class CustomersWebTest extends WebDriverAccess {
   def shouldBeAbleToBeDeleted {
     val viewCustomerPage = createCustomerNamed("Elijah")
     val homePage = viewCustomerPage.deleteCustomer()
-    assertThat(homePage.customerNames.contains("Elijah"), is(false));
+    assertThat(homePage.customerNames.contains("Elijah"), is(false))
   }
 
   @Test
@@ -81,11 +81,11 @@ class CustomersWebTest extends WebDriverAccess {
     createCustomerNamed("Frank")
     createCustomerNamed("George")
     val homePage = HomePage.open()
-    assertThat(homePage.customerNames.contains("Frank"), is(true));
-    assertThat(homePage.customerNames.contains("George"), is(true));
+    assertThat(homePage.customerNames.contains("Frank"), is(true))
+    assertThat(homePage.customerNames.contains("George"), is(true))
     homePage.deleteAllCustomers()
-    assertThat(homePage.customerNames.contains("Frank"), is(false));
-    assertThat(homePage.customerNames.contains("George"), is(false));
+    assertThat(homePage.customerNames.contains("Frank"), is(false))
+    assertThat(homePage.customerNames.contains("George"), is(false))
   }
 
   private def createCustomerNamed(name: String) = {

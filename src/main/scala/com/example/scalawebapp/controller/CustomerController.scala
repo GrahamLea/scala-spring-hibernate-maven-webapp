@@ -20,7 +20,7 @@ import org.springframework.web.servlet.ModelAndView
 
 import com.example.scalawebapp.data.Customer
 import com.example.scalawebapp.repository.CustomerRepository
-import reflect.BeanProperty
+import beans.BeanProperty
 import javax.validation.constraints.NotNull
 import org.hibernate.validator.constraints.NotEmpty
 import javax.validation.Valid
@@ -96,7 +96,7 @@ class CustomerController {
 
 class CustomerPageData {
   @BeanProperty @NotNull @NotEmpty
-  var name: String = null;
+  var name: String = null
 
   override def toString = "[CustomerPageData: name = " + name + "]"
 

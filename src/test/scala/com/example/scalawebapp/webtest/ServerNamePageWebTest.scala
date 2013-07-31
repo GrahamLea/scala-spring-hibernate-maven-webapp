@@ -22,7 +22,7 @@ class ServerNamePageWebTest extends WebDriverAccess {
   def shouldShowTheServerName {
     val homePage = HomePage.open()
     val serverNamePage = homePage.showServerName()
-    assertThat(serverNamePage.serverName, is("localhost"));
+    assertThat(serverNamePage.serverName, is("localhost"))
     serverNamePage.home()
   }
 }

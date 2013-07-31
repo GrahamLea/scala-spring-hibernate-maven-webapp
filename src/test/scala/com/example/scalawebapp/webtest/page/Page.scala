@@ -32,7 +32,7 @@ abstract class Page[T <: Page[T]](expectedBodyId: String, val driver: WebDriver)
   final protected def linkText = By.linkText _
   final protected def input = new ByName(_)
   final protected def xpath = By.xpath _
-  final protected def xpathFormat(text: String, arguments: Any*) = xpath(format(text, arguments))
+  final protected def xpathFormat(text: String, arguments: Any*) = xpath(text.format(arguments))
   final protected def spanWithId(id: String) = xpathFormat("//span[@id='%s']", id)
 
   final private val submitButton = xpath("//input[@type='submit']")
@@ -65,10 +65,10 @@ abstract class Page[T <: Page[T]](expectedBodyId: String, val driver: WebDriver)
 
   protected def expecting[P <: Page[P]](implicit m: Manifest[P]): P = {
     try {
-      m.erasure.getConstructor(classOf[WebDriver]).newInstance(driver).asInstanceOf[P]
+      m.runtimeClass.getConstructor(classOf[WebDriver]).newInstance(driver).asInstanceOf[P]
     } catch {
       case e: InvocationTargetException => throw e.getCause
-      case e => throw e
+      case e: Throwable => throw e
     }
   }
 
