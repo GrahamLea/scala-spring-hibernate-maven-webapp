@@ -32,7 +32,7 @@ class CustomerRepositoryImpl extends CustomerRepository {
   var sessionFactory: SessionFactory = null
 
   @Transactional
-  def save(customer: Customer): Long = Long.unbox(getCurrentSession.save(customer))
+  def save(customer: Customer): Long = Long.unbox(getCurrentSession.save(customer).asInstanceOf[Object])
 
   @Transactional
   def update(customer: Customer) = getCurrentSession.saveOrUpdate(customer)
