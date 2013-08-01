@@ -269,19 +269,24 @@
                 </executions>
             </plugin>
             <plugin>
-                <groupId>org.mortbay.jetty</groupId>
+                <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
-                <version>8.0.4.v20111024</version>
+                <version>9.0.4.v20130625</version>
+                <!-- If you can't use Java 7 for some reason, or want to use Jetty 8, check out the java-6 git branch -->
                 <configuration>
-                    <connectors>
-                        <connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
-                            <port>9090</port>
-                            <maxIdleTime>60000</maxIdleTime>
-                        </connector>
-                    </connectors>
+                    <httpConnector>
+                        <port>9090</port>
+                    </httpConnector>
                     <stopKey>stopIt</stopKey>
                     <stopPort>9191</stopPort>
                     <reload>manual</reload>
+                    <systemProperties>
+                        <!-- Without this, JSPs don't compile when Maven runs on a JRE instead of a JDK (e.g. Java 7 on a Mac!) -->
+                        <systemProperty>
+                            <name>org.apache.jasper.compiler.disablejsr199</name>
+                            <value>true</value>
+                        </systemProperty>
+                    </systemProperties>
                 </configuration>
                 <executions>
                     <execution>
