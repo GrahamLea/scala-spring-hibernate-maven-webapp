@@ -34,6 +34,7 @@ Attribution
 -----------
 
 This source code was originally created by Graham Lea for the blog http://grahamhackingscala.blogspot.com/
+(though Graham now blogs at http://www.grahamlea.com/)
 
 The Eclipse plugin configuration was submitted by Trevor Lalish-Menagh (http://www.trevmex.com/)
 
