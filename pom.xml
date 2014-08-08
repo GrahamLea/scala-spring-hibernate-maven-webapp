@@ -36,7 +36,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <scala.version>2.10.2</scala.version>
-        <org.springframework.version>3.2.3.RELEASE</org.springframework.version>
+        <org.springframework.version>4.0.6.RELEASE</org.springframework.version>
     </properties>
 
     <dependencies>
