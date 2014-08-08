@@ -28,12 +28,11 @@ import org.springframework.validation.BindingResult
 import collection.JavaConversions
 
 @Controller
-class CustomerController {
+class CustomerController @Autowired() (
+  val customerRepository: CustomerRepository
+) {
 
   import ControllerTools._
-
-  @Autowired
-  val customerRepository: CustomerRepository = null
 
   @RequestMapping(value = Array("/customers/new"), method = Array(GET))
   def showNewCustomerForm() = new ModelAndView("customer/customer-new", "customerData", new CustomerPageData)

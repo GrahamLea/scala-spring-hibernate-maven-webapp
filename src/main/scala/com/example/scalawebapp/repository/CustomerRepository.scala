@@ -27,28 +27,24 @@ trait CustomerRepository {
 }
 
 @Repository
-class CustomerRepositoryImpl extends CustomerRepository {
-  @Autowired
-  var sessionFactory: SessionFactory = null
+class CustomerRepositoryImpl @Autowired() (
+  val sessionFactory: SessionFactory
+) extends CustomerRepository {
+
+  private def currentSession = sessionFactory.getCurrentSession
 
   @Transactional
-  def save(customer: Customer): Long = Long.unbox(getCurrentSession.save(customer).asInstanceOf[Object])
+  def save(customer: Customer): Long = Long.unbox(currentSession.save(customer).asInstanceOf[Object])
 
   @Transactional
-  def update(customer: Customer): Unit = getCurrentSession.saveOrUpdate(customer)
+  def update(customer: Customer): Unit = currentSession.saveOrUpdate(customer)
 
   @Transactional
-  def delete(customerId: Long): Unit = getCurrentSession.delete(get(customerId))
+  def delete(customerId: Long): Unit = currentSession.delete(get(customerId))
 
   @Transactional(readOnly = true)
-  def get(customerId: Long): Customer = getCurrentSession.get(classOf[Customer], Long.box(customerId)).asInstanceOf[Customer]
+  def get(customerId: Long): Customer = currentSession.get(classOf[Customer], Long.box(customerId)).asInstanceOf[Customer]
 
   @Transactional(readOnly = true)
-  def getAll: java.util.List[Customer] = getCurrentSession.createCriteria(classOf[Customer]).list().asInstanceOf[java.util.List[Customer]]
-
-  def setSessionFactory(sessionFactory: SessionFactory): Unit = {
-    this.sessionFactory = sessionFactory
-  }
-
-  def getCurrentSession = sessionFactory.getCurrentSession
+  def getAll: java.util.List[Customer] = currentSession.createCriteria(classOf[Customer]).list().asInstanceOf[java.util.List[Customer]]
 }
