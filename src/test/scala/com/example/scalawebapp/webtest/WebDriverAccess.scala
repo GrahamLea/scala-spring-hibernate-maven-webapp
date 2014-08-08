@@ -33,7 +33,7 @@ object WebDriverAccess {
   }
 
   if (!isRunningInIde || closeBrowserAfterTests) {
-    Runtime.getRuntime.addShutdownHook(new Thread(new Runnable { def run() {defaultDriver.close()} } ))
+    Runtime.getRuntime.addShutdownHook(new Thread(new Runnable { def run() {defaultDriver.quit()} } ))
   }
 
   private def isRunningInIde: Boolean = {
