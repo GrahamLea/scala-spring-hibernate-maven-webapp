@@ -271,7 +271,7 @@
             <plugin>
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
-                <version>9.0.4.v20130625</version>
+                <version>9.2.2.v20140723</version>
                 <!-- If you can't use Java 7 for some reason, or want to use Jetty 8, check out the java-6 git branch -->
                 <configuration>
                     <httpConnector>
