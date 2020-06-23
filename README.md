@@ -1,3 +1,5 @@
+:warning: **NOTE:** This repo hasn't been updated in 6 years and is now archived. :warning:
+
 Scala + Spring + Hibernate + Maven + Selenium WebDriver
 =======================================================
 
